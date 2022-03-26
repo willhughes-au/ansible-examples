@@ -1,0 +1,9 @@
+---
+
+- name: Run on just pi group
+  hosts: pis
+
+  roles:
+    - name: test-file
+      vars:
+        DELETE_IT_AFTER: true

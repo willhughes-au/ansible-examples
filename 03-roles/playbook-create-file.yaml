@@ -1,0 +1,7 @@
+---
+
+- name: Run on just pi group
+  hosts: pis
+
+  roles:
+    - test-file

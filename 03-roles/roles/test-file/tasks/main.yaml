@@ -1,0 +1,17 @@
+---
+
+# see how the copy module works: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
+- name: Create a test file /tmp/test-ansible-playbook.txt
+  copy:
+    dest: /tmp/test-ansible-playbook.txt
+    content: "This is a file known to ansible as {{inventory_hostname}}\n
+this file was created at {{ansible_date_time.iso8601 }}\n
+default IPv4 address is: {{ansible_facts.default_ipv4.address}}\n
+we also know these things about it:\n
+{{ansible_facts | to_nice_json}}"
+
+- name: Delete the test file, if the var DELETE_IT_AFTER is set to true
+  file: 
+    state: absent
+    path: /tmp/test-ansible-playbook.txt
+  when: DELETE_IT_AFTER | default(false)

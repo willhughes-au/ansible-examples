@@ -1,0 +1,21 @@
+---
+- name: Hello World example
+  hosts: localhost
+
+  tasks:
+    - name: Set a variable to "foo"
+      set_fact: 
+        some_variable: "foo"
+
+    - name: Echo the variable
+      debug:
+        var: some_variable
+    
+    - name: Run a command, register it
+      command: 
+        ip link
+      register: cmd_result
+
+    - name: Output the cmd_result
+      debug:
+        var: cmd_result

@@ -1,0 +1,19 @@
+
+all: 
+    hosts: 
+        nuc01: 
+            ansible_user: root
+        gpuhost01: 
+            ansible_user: root
+        sensepi[01:03]:  # this is the same as defining sensepi01, sensepi02, sensepi03 individually
+            ansible_user: pi
+    vars:
+        ansible_python_interpreter: /usr/bin/python3 # everyone should go over to python3
+
+
+pis:
+    hosts:
+        sensepi[01:03]:
+    vars:
+        some_extra_var_for_all_pis: "magic thing" 
+        datacenter: "distributed"

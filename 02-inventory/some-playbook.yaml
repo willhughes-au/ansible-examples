@@ -1,0 +1,31 @@
+---
+- name: Run on all servers
+  hosts: all
+
+  tasks:
+    - name: Run a command, register it
+      command: 
+        hostname
+      register: cmd_result
+
+    - name: Output the cmd_result
+      debug:
+        var: cmd_result.stdout
+
+    - name: Output datacenter
+      debug:
+        var: datacenter
+
+- name: Run on just pi group
+  hosts: pis
+
+  tasks:
+    - name: Run a command, register it
+      command: 
+        hostname
+      register: cmd_result
+
+    - name: Output the cmd_result
+      debug:
+        var: cmd_result.stdout
+
